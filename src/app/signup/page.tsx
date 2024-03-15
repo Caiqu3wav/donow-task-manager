@@ -1,5 +1,6 @@
-'use client'
+'use client';
+import { SignUp } from "@clerk/nextjs";
 
 export default function page() {
-    return <div>sign up</div>
+    return <div className="flex items-center justify-center h-full"><SignUp/></div>
 }

@@ -1,32 +1,52 @@
 'use client';
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import styled from "styled-components";
 import { useGlobalState }  from "../../context/globalProvider"
 import Image from "next/image";
 import menu from "../../utils/menu"
+import Button from "../button/Button";
+import { logout, bars, arrowLeft } from "@/app/utils/icons";
+import { useClerk, useUser, UserButton } from "@clerk/nextjs";
 
 export default function SideBar(){
-    const { theme, collapsed, collapseMenu } = useGlobalState();
+    const { theme } = useGlobalState();
+    const [collapsed, setCollapsed] = useState(false);
+
 
     const router = useRouter();
     const pathname = usePathname();
+    const { signOut } = useClerk();
+
+    const { user } = useUser();
+
+    const { firstName, lastName, imageUrl } = user || {
+       firstName: "", 
+       lastName: "",
+        imageUrl: "",
+      };
 
     const handleClick = (link: string) => {
         router.push(link)
     };
 
 
-    return <SideBarStyled theme={theme} collapsed={collapsed}>
+    return (
+       <SideBarStyled theme={theme} collapsed={collapsed}>
+<button className="toggle-nav" onClick={() => setCollapsed(!collapsed)}>
+        {collapsed ? arrowLeft : bars}
+      </button>
         <div className="profile">
-        <div className="profile-overlay"> </div>
+        <div className="profile-overlay"></div>
         <div className="image">
-        <Image width={70} height={70} src="/images/carljung.jpg" alt="profile pic"/>
+        <Image width={70} height={70} src={imageUrl} alt="profile pic"/>
         </div>
-        <h1>
-            <span>caique</span>
-            <span>gonça</span>
+        <div className="user-btn absolute z-20 top-0 w-full h-full">
+          <UserButton/>
+        </div>
+        <h1 className="capitalize">
+            { firstName } { lastName }
         </h1>
         </div>
         <ul className="nav-items">
@@ -46,7 +66,20 @@ export default function SideBar(){
           );
         })}
       </ul>
-        </SideBarStyled>;
+      <div className="sign-out relative mb-5">
+        <Button name={"Sign Out"}
+        type={"submit"}
+        padding={"0.4rem 0.8rem"}
+        borderRad={"0.8rem"}
+        fw={"500"}
+        fs={"1.2rem"}
+        icon={logout}
+        click={() => {
+          signOut(() => router.push("/signin"))
+        }}></Button>
+      </div>
+        </SideBarStyled>
+    );
 }
 
 const SideBarStyled = styled.nav<{ collapsed: boolean }>`
@@ -69,7 +102,7 @@ const SideBarStyled = styled.nav<{ collapsed: boolean }>`
 
     transition: all 0.3s cubic-bezier(0.53, 0.21, 0, 1);
     transform: ${(props) =>
-      props.collapsed ? "translateX(-107%)" : "translateX(0)"};
+      props.collapsed === false ? "translateX(-107%)" : "translateX(0)"};
 
     .toggle-nav {
       display: block !important;

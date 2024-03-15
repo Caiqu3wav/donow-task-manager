@@ -2,11 +2,43 @@
 import { useGlobalState } from "@/app/context/globalProvider";
 import React from "react"
 import styled from "styled-components"
+import CreateContent from "../modals/CreateContent";
+import TaskItem from "../taskitem/TaskItem";
+import Modal from "../modals/Modal";
+import { plus } from "@/app/utils/icons";
 
-export default function Tasks() {
-    const {theme} = useGlobalState();
+interface Props {
+  title: string;
+  tasks: any[];
+}
+
+export default function Tasks({ title, tasks }: Props) {
+    const {theme, isLoading, openModal, modal } = useGlobalState();
+
+    
+    
     return(
-        <TaskStyled theme={theme}>task</TaskStyled>
+        <TaskStyled theme={theme}>
+          
+          {modal && <Modal content={<CreateContent />} />}
+          <h1>
+            {title}
+          </h1>
+           <div className="tasks grid">
+           {tasks.map((task) => (
+              <TaskItem key={task.id} 
+              title={task.title}
+              description={task.description}
+              dte={task.dte}
+              isCompleted={task.isCompleted}
+              id={task.id} />
+            ))}
+            <button className="create-task" onClick={openModal}>
+              {plus}
+              Add New Task
+            </button>
+          </div>
+        </TaskStyled>
     )
 }
 
