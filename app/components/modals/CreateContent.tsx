@@ -1,10 +1,10 @@
 'use client';
-import { useGlobalState } from "@/app/context/globalProvider";
+import { useGlobalState } from "../../context/globalProvider";
 import "./CreateContent.css"
 import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { plus } from "@/app/utils/icons";
+import { plus } from "../../utils/icons";
 import styled from "styled-components";
 import Button from "../button/Button";
 

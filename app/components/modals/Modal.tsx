@@ -1,6 +1,6 @@
 'use client';
 
-import { useGlobalState } from "@/app/context/globalProvider";
+import { useGlobalState } from "../../context/globalProvider";
 import { ReactNode } from "react";
 import styled from "styled-components";
 

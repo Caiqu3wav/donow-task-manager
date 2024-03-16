@@ -1,11 +1,11 @@
 'use client'
-import { useGlobalState } from "@/app/context/globalProvider";
+import { useGlobalState } from "../../context/globalProvider";
 import React from "react"
 import styled from "styled-components"
 import CreateContent from "../modals/CreateContent";
 import TaskItem from "../taskitem/TaskItem";
 import Modal from "../modals/Modal";
-import { plus } from "@/app/utils/icons";
+import { plus } from "../../utils/icons";
 
 interface Props {
   title: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useGlobalState } from "@/app/context/globalProvider";
+import { useGlobalState } from "../../context/globalProvider";
 import { useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React, { ReactNode } from "react";

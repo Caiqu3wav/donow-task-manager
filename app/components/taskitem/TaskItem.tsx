@@ -1,8 +1,8 @@
 'use client';
-import { edit, trash } from "@/app/utils/icons"
+import { edit, trash } from "../../utils/icons"
 import styled from "styled-components"
 import formatDate from "../../utils/formatDate"
-import { useGlobalState } from "@/app/context/globalProvider";
+import { useGlobalState } from "../../context/globalProvider";
 
 interface Props {
     title: string;

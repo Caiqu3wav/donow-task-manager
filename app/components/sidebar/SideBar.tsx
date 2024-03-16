@@ -7,7 +7,7 @@ import { useGlobalState }  from "../../context/globalProvider"
 import Image from "next/image";
 import menu from "../../utils/menu"
 import Button from "../button/Button";
-import { logout, bars, arrowLeft } from "@/app/utils/icons";
+import { logout, bars, arrowLeft } from "../../utils/icons";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
 
 export default function SideBar(){
