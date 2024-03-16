@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try{
         const {userId} = auth();
+
         if (!userId){
             return NextResponse.json({ error: "Unauthorizated", status: 401 });
         }
@@ -35,11 +36,9 @@ export async function POST(req: Request) {
             }
         });
 
-        console.log("TASK CREATED:", task);
 
         return NextResponse.json(task);
     } catch (error) {
-        console.log("ERROR CREATING TASK: ", error);
         return NextResponse.json({ error: "Error creating task", status: 500 });
     }
 }
@@ -58,7 +57,6 @@ export async function GET(req: Request) {
             },
         });
 
-        console.log("TASKS: ", tasks);
         return NextResponse.json(tasks);
     } catch (error) {
         console.log("ERROR GETTING TASK: ", error);

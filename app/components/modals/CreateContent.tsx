@@ -3,7 +3,7 @@ import { useGlobalState } from "../../context/globalProvider";
 import "./CreateContent.css"
 import axios from "axios";
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { plus } from "../../utils/icons";
 import styled from "styled-components";
 import Button from "../button/Button";
@@ -57,7 +57,7 @@ export default function CreateContent() {
                 toast.error(res.data.error);
             }
 
-            if(res.data.error){
+            if(!res.data.error){
             toast.success("Task created sucessfully");
             allTasks();
             closeModal();  
