@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useGlobalState }  from "../../context/globalProvider"
 import Image from "next/image";
 import menu from "../../utils/menu"
+import { FaUserAstronaut } from "react-icons/fa6";
 import Button from "../button/Button";
 import { logout, bars, arrowLeft } from "../../utils/icons";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
@@ -43,9 +44,9 @@ export default function SideBar(){
         <Image width={70} height={70} src={imageUrl} alt="profile pic"/>
         </div>
         <div className="user-btn absolute z-20 top-0 w-full h-full">
-          <UserButton/>
+          <UserButton />
         </div>
-        <h1 className="capitalize">
+        <h1 className="capitalize text-[11px] mr-2">
             { firstName } { lastName }
         </h1>
         </div>
@@ -201,12 +202,6 @@ const SideBarStyled = styled.nav<{ collapsed: boolean }>`
         border-radius: 100%;
         transition: all 0.5s ease;
       }
-    }
-
-    > h1 {
-      margin-left: 0.8rem;
-      font-size: clamp(1.2rem, 4vw, 1.4rem);
-      line-height: 100%;
     }
 
     &:hover {
