@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { useGlobalState }  from "../../context/globalProvider"
 import Image from "next/image";
 import menu from "../../utils/menu"
-import { FaUserAstronaut } from "react-icons/fa6";
 import Button from "../button/Button";
 import { logout, bars, arrowLeft } from "../../utils/icons";
 import { useClerk, useUser, UserButton } from "@clerk/nextjs";
